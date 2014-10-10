@@ -1,22 +1,5 @@
 package com.ringingmaster.extraction;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.math.BigInteger;
-import java.util.List;
-import java.util.zip.DeflaterOutputStream;
-import java.util.zip.InflaterInputStream;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-
-import org.apache.log4j.Logger;
-
 import com.cccbr.generated.method.CollectionType;
 import com.cccbr.generated.method.MethodSetType;
 import com.cccbr.generated.method.MethodType;
@@ -25,6 +8,21 @@ import com.concurrentperformance.ringingmaster.engine.NumberOfBells;
 import com.concurrentperformance.ringingmaster.generated.notation.persist.ObjectFactory;
 import com.concurrentperformance.ringingmaster.generated.notation.persist.SerializableNotation;
 import com.concurrentperformance.ringingmaster.generated.notation.persist.SerializableNotationList;
+import org.apache.log4j.Logger;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.util.List;
+import java.util.zip.DeflaterOutputStream;
+import java.util.zip.InflaterInputStream;
 
 /**
  * Builds the compressed method data
