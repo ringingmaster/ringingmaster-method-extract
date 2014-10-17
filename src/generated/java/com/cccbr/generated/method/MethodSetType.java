@@ -153,7 +153,7 @@ public class MethodSetType {
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getMethod().add(newItem);
+     *    getCreatedMethod().add(newItem);
      * </pre>
      * 
      * 
