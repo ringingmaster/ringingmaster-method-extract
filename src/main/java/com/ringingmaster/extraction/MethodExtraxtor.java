@@ -8,7 +8,8 @@ import com.concurrentperformance.ringingmaster.engine.NumberOfBells;
 import com.concurrentperformance.ringingmaster.generated.notation.persist.ObjectFactory;
 import com.concurrentperformance.ringingmaster.generated.notation.persist.SerializableNotation;
 import com.concurrentperformance.ringingmaster.generated.notation.persist.SerializableNotationList;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -30,7 +31,7 @@ import java.util.zip.InflaterInputStream;
  * @author Stephen Lake
  */
 public class MethodExtraxtor {
-	private static Logger log = Logger.getLogger(MethodExtraxtor.class);
+	private final static Logger log = LoggerFactory.getLogger(MethodExtraxtor.class);
 
 	private static final String CCBR_XML = "./resources/allmeths.xml";
 	private static final String ALL_NOTATIONS_DATA_OUTPUT = "../android-ui/assets/all_notations.xml.deflated";
