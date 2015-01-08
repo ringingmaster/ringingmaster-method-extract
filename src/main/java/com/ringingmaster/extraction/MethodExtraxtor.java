@@ -49,11 +49,11 @@ public class MethodExtraxtor {
 		final SerializableNotationList notationsRead = readNotations();
 		final boolean match = notations.equals(notationsRead);
 		if (match) {
-			log.info("Round trip persistance success");
+			log.info("Round trip persistence success");
 		}
 		else{
 
-			log.error("Round trip persistance fail - THIS IS FAILING BECAUSE WE CANT COMPARE TEH JAX OBJECTS");
+			log.error("Round trip persistence fail - THIS IS FAILING BECAUSE WE CANT COMPARE THE JAX OBJECTS");
 		}
 	}
 
