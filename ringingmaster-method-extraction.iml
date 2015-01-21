@@ -15,6 +15,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resource" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/generated/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/resources" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -27,6 +28,7 @@
           <root url="jar://$IVY_CACHE_HOME$/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.5.jar!/" />
           <root url="jar://$IVY_CACHE_HOME$/cache/org.slf4j/slf4j-log4j12/jars/slf4j-log4j12-1.7.5.jar!/" />
           <root url="jar://$IVY_CACHE_HOME$/cache/log4j/log4j/jars/log4j-1.2.16.jar!/" />
+          <root url="jar://$IVY_CACHE_HOME$/cache/com.google.guava/guava/jars/guava-14.0.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

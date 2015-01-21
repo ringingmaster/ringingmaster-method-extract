@@ -9,22 +9,8 @@
 			<param name="ConversionPattern"
 				value="%d{HH:mm:ss,SSS} %-5p [%-25.25t] %-30.30c{2} - %m%n" /> <!-- TODO remove the upper case letters - very slow. -->
 		</layout>
-		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMax" value="INFO" />
-		</filter>
 	</appender>
 
-	<appender name="CONSOLE_ERROR" class="org.apache.log4j.ConsoleAppender">
-		<param name="Target" value="System.err" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern"
-				value="%d{HH:mm:ss,SSS} %-5p [%-25.25t] %-30.30c{2} - %m%n" /> <!-- TODO remove the upper case letters - very slow. -->
-		</layout>
-		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMin" value="WARN" />
-		</filter>
-	</appender>
-  
   	<logger name="com.ringingmaster">
 		<level value="info"/>
 	</logger>
@@ -32,7 +18,6 @@
   	<root>
 		<priority value="info" />
 		<appender-ref ref="CONSOLE" />
-		<appender-ref ref="CONSOLE_ERROR" />
 	</root>
 
 </log4j:configuration>

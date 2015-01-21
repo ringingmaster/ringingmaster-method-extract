@@ -9,6 +9,7 @@
     <xs:attribute name="stage" type="xs:int" use="required"/>
     <xs:attribute name="notation" type="xs:string" use="required"/>
     <xs:attribute name="leadEnd" type="xs:string"/>
+    <xs:attribute name="leadHead" type="xs:string"/>
   </xs:complexType>
 
   <xs:complexType name="serializableNotationList">
