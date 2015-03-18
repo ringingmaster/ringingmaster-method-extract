@@ -18,6 +18,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class CentralCouncilMethodExtractor implements MethodExtractor {
 
@@ -26,7 +27,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 	private static final String CCBR_XML = "/allmeths.xml";
 
 	@Override
-	public SerializableNotationList extractNotations() {
+	public Stream<SerializableNotation> extractNotations() {
 
 		int unimportedMethodCount = 0;
 
@@ -70,7 +71,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 			log.error("Exception extracting methods from allmethods.xml", e);
 		}
 
-		return serializableNotationList;
+		return serializableNotationList.getSerializableNotation().stream();
 	}
 
 	SerializableNotation extractNotation(final MethodType method, final BigInteger stage, boolean parentPalindromic, int unimportedMethodCount) {
