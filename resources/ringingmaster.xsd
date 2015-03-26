@@ -8,12 +8,13 @@
     <xs:attribute name="name" type="xs:string" use="required"/>
     <xs:attribute name="stage" type="xs:int" use="required"/>
     <xs:attribute name="notation" type="xs:string" use="required"/>
-    <xs:attribute name="leadEnd" type="xs:string"/>
+    <xs:attribute name="notation2" type="xs:string" />
+    <xs:attribute name="palendromic" type="xs:boolean" default="false"/>
     <xs:attribute name="leadHead" type="xs:string"/>
   </xs:complexType>
 
   <xs:complexType name="serializableNotationList">
-  
+
     <xs:sequence>
   	  <xs:element name="serializableNotation" type="serializableNotation" minOccurs="0" maxOccurs="unbounded"/>
   	</xs:sequence>

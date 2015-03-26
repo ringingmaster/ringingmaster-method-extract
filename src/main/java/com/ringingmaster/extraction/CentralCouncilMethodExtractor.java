@@ -27,7 +27,12 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 	private static final String CCBR_XML = "/allmeths.xml";
 
 	@Override
-	public Stream<SerializableNotation> extractNotations() {
+	public Stream<SerializableNotation> extractNotationsToStream() {
+		return extractNotations().getSerializableNotation().stream();
+	}
+
+	@Override
+	public SerializableNotationList extractNotations() {
 
 		int unimportedMethodCount = 0;
 
@@ -71,10 +76,10 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 			log.error("Exception extracting methods from allmethods.xml", e);
 		}
 
-		return serializableNotationList.getSerializableNotation().stream();
+		return serializableNotationList;
 	}
 
-	SerializableNotation extractNotation(final MethodType method, final BigInteger stage, boolean parentPalindromic, int unimportedMethodCount) {
+	private SerializableNotation extractNotation(final MethodType method, final BigInteger stage, boolean palindromic, int unimportedMethodCount) {
 
 		final NumberOfBells numberOfBells = NumberOfBells.valueOf(stage.intValue());
 		method.getName().getValue();
@@ -87,7 +92,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 		// do we have a method based palindromic set
 		final List<SymmetryType> symmetryTypes = method.getSymmetry();
 		if (symmetryTypes.contains(SymmetryType.PALINDROMIC)) {
-			parentPalindromic = true;
+			palindromic = true;
 		}
 
 		if (numberOfBells == null) {
@@ -96,7 +101,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 		}
 
 
-		if (!parentPalindromic && notationShorthand.contains(",")) {
+		if (!palindromic && notationShorthand.contains(",")) {
 			log.error("[{}.{}] Not extracting [{}] as not palindromic but contains comma for folded", unimportedMethodCount, id, titleOriginal);
 			return null;
 		}
@@ -121,17 +126,26 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 		notation.setStage(numberOfBells.getBellCount());
 
 		// are we palindromic AND folded?
-		if (parentPalindromic && notationShorthand.contains(",")) {
-			final String[] split = notationShorthand.split(",");
-			if (split.length != 2) {
-				log.error("[{}.{}] Not extracting [{}] as palindromic but contain [{}] comma(s).", unimportedMethodCount, id, titleOriginal, split.length);
+		final String[] split = notationShorthand.split(",");
+		if (palindromic) {
+			notation.setPalendromic(true);
+			if (split.length > 2) {
+				log.error("[{}.{}] Not extracting [{}] as palindromic but contain [{}] comma(s).", unimportedMethodCount, id, titleOriginal, split.length-1);
 				return null;
 			}
+
 			notation.setNotation(split[0]);
-			notation.setLeadEnd(split[1]);
+
+			if (split.length > 1) {
+				notation.setNotation2(split[1]);
+			}
 
 		} else {
-			notation.setNotation(notationShorthand); //TODO need to handle commas.
+			if (split.length != 1) {
+				log.error("[{}.{}] Not extracting [{}] as not palindromic but contain [{}] comma(s).", unimportedMethodCount, id, titleOriginal, split.length-1);
+				return null;
+			}
+			notation.setNotation(notationShorthand);
 		}
 
 

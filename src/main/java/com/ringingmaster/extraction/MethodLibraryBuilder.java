@@ -13,6 +13,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
 
 
@@ -24,7 +25,7 @@ import java.util.zip.InflaterInputStream;
 public class MethodLibraryBuilder {
 	private final static Logger log = LoggerFactory.getLogger(MethodLibraryBuilder.class);
 
-	private static final String ALL_NOTATIONS_OUTPUT_FOLDER = "./ringingmaster-method-extraction/artifacts";
+	private static final String ALL_NOTATIONS_OUTPUT_FOLDER = "./ringingmaster-method-extraction/artifacts/";
 	private static final String ALL_NOTATIONS_DEFLATED_OUTPUT = "all_notations.xml.deflated";
 	private static final String ALL_NOTATIONS_OUTPUT = "all_notations.xml";
 
@@ -40,15 +41,15 @@ public class MethodLibraryBuilder {
 
 		final SerializableNotationList notations = methodExtractor.extractNotations();
 		writeNotations(notations);
-	//	final SerializableNotationList notationsRead = readNotations();
-	//	final boolean match = notations.equals(notationsRead);
-//		if (match) {
-//			log.info("Round trip persistence success");
-//		}
-//		else{
-//
-//			log.error("Round trip persistence fail - THIS IS FAILING BECAUSE WE CANT COMPARE THE JAX OBJECTS");
-//		}
+//TODO	    final SerializableNotationList notationsRead = readNotations();
+//TODO	    final boolean match = notations.equals(notationsRead);
+//TODO		if (match) {
+//TODO			log.info("Round trip persistence success");
+//TODO		}
+//TODO		else{
+//TODO
+//TODO			log.error("Round trip persistence fail - THIS IS FAILING BECAUSE WE CANT COMPARE THE JAX OBJECTS");
+//TODO		}
 		log.info("Finished. [{}ms]", System.currentTimeMillis() - start);
 	}
 
@@ -56,10 +57,10 @@ public class MethodLibraryBuilder {
 		log.info("serialising to [" + ALL_NOTATIONS_DEFLATED_OUTPUT + "]");
 
 		FileOutputStream fos = null;
-		//DeflaterOutputStream dos = null;
+		DeflaterOutputStream dos = null;
 		try {
+			dos = new DeflaterOutputStream(fos);
 			fos = new FileOutputStream(ALL_NOTATIONS_OUTPUT_FOLDER + ALL_NOTATIONS_OUTPUT);
-			//TODO deflate ??? dos = new DeflaterOutputStream(fos);
 
 
 

@@ -1,6 +1,7 @@
 package com.ringingmaster.extraction;
 
 import com.concurrentperformance.ringingmaster.generated.notation.persist.SerializableNotation;
+import com.concurrentperformance.ringingmaster.generated.notation.persist.SerializableNotationList;
 
 import java.util.stream.Stream;
 
@@ -10,5 +11,7 @@ import java.util.stream.Stream;
  * @author Lake
  */
 public interface MethodExtractor {
-	Stream<SerializableNotation> extractNotations();
+	Stream<SerializableNotation> extractNotationsToStream();
+
+	SerializableNotationList extractNotations();
 }
