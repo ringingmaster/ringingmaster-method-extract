@@ -100,7 +100,6 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 			return null;
 		}
 
-
 		if (!palindromic && notationShorthand.contains(",")) {
 			log.error("[{}.{}] Not extracting [{}] as not palindromic but contains comma for folded", unimportedMethodCount, id, titleOriginal);
 			return null;
@@ -127,17 +126,18 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 
 		// are we palindromic AND folded?
 		final String[] split = notationShorthand.split(",");
-		if (palindromic) {
-			notation.setPalendromic(true);
-			if (split.length > 2) {
-				log.error("[{}.{}] Not extracting [{}] as palindromic but contain [{}] comma(s).", unimportedMethodCount, id, titleOriginal, split.length-1);
-				return null;
-			}
+		if (palindromic && notationShorthand.contains(",")) {
 
+			notation.setFoldedPalendromic(true);
 			notation.setNotation(split[0]);
 
 			if (split.length > 1) {
 				notation.setNotation2(split[1]);
+			}
+
+			if (split.length > 2) {
+				log.error("[{}.{}] Not extracting [{}] as palindromic but contain [{}] comma(s).", unimportedMethodCount, id, titleOriginal, split.length-1);
+				return null;
 			}
 
 		} else {
