@@ -128,7 +128,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 		final String[] split = notationShorthand.split(",");
 		if (palindromic && notationShorthand.contains(",")) {
 
-			notation.setFoldedPalendromic(true);
+			notation.setFoldedPalindrome(true);
 			notation.setNotation(split[0]);
 
 			if (split.length > 1) {
