@@ -58,9 +58,10 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 				final List<MethodType> methods = methodSet.getMethod();
 				final List<SymmetryType> symmetryTypes = methodSet.getProperties().getSymmetry();
 				final boolean palindromic = symmetryTypes.contains(SymmetryType.PALINDROMIC);
+				final BigInteger leadLength = methodSet.getProperties().getLengthOfLead();
 
 				for (final MethodType method : methods) {
-					final SerializableNotation notation = extractNotation(method, stage, palindromic, unimportedMethodCount);
+					final SerializableNotation notation = extractNotationFromMethodSet(method, stage, palindromic, leadLength, unimportedMethodCount);
 					if (notation != null) {
 						notations.add(notation);
 					}
@@ -79,7 +80,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 		return serializableNotationList;
 	}
 
-	private SerializableNotation extractNotation(final MethodType method, final BigInteger stage, boolean palindromic, int unimportedMethodCount) {
+	private SerializableNotation extractNotationFromMethodSet(final MethodType method, final BigInteger stage, boolean palindromic, BigInteger leadLength, final int unimportedMethodCount) {
 
 		final NumberOfBells numberOfBells = NumberOfBells.valueOf(stage.intValue());
 		method.getName().getValue();
@@ -136,7 +137,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 			}
 
 			if (split.length > 2) {
-				log.error("[{}.{}] Not extracting [{}] as palindromic but contain [{}] comma(s).", unimportedMethodCount, id, titleOriginal, split.length-1);
+				log.error("[{}.{}] Not extracting [{}] as palindromic but contain [{}] comma(s).", unimportedMethodCount, id, titleOriginal, split.length - 1);
 				return null;
 			}
 
@@ -150,6 +151,11 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 
 
 		notation.setLeadHead(leadHead);
+
+		if (method.getLengthOfLead() != null) {
+			leadLength = method.getLengthOfLead();
+		}
+		notation.setLeadLength(leadLength.intValue());
 
 		return notation;
 	}
