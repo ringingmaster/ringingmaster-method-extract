@@ -71,7 +71,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 				}
 			}
 
-			log.info("Extracted [" + notations.size() + "] methods not imported [" + unimportedMethodCount + "]");
+			log.info("Extracted [" + notations.size() + "]. Methods not imported [" + unimportedMethodCount + "]");
 
 		} catch (final JAXBException e) {
 			log.error("Exception extracting methods from allmethods.xml", e);
