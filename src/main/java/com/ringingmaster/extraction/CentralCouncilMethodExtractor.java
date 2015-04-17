@@ -123,7 +123,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 
 		final SerializableNotation notation = new SerializableNotation();
 		notation.setName(title);
-		notation.setStage(numberOfBells.getBellCount());
+		notation.setNumberOfBells(numberOfBells.getBellCount());
 
 		// are we palindromic AND folded?
 		final String[] split = notationShorthand.split(",");

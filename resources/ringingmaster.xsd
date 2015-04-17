@@ -6,7 +6,7 @@
   <xs:complexType name="serializableNotation">
     <xs:sequence/>
     <xs:attribute name="name" type="xs:string" use="required"/>
-    <xs:attribute name="stage" type="xs:int" use="required"/>
+    <xs:attribute name="numberOfBells" type="xs:int" use="required"/>
     <xs:attribute name="notation" type="xs:string" use="required"/>
     <xs:attribute name="notation2" type="xs:string" />
     <xs:attribute name="foldedPalindrome" type="xs:boolean" default="false"/>

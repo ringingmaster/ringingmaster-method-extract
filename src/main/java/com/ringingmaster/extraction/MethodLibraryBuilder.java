@@ -59,7 +59,7 @@ public class MethodLibraryBuilder {
 		FileOutputStream fos = null;
 		DeflaterOutputStream dos = null;
 		try {
-			dos = new DeflaterOutputStream(fos);
+//			dos = new DeflaterOutputStream(fos);
 			fos = new FileOutputStream(ALL_NOTATIONS_OUTPUT_FOLDER + ALL_NOTATIONS_OUTPUT);
 
 
