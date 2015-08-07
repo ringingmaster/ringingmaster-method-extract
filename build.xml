@@ -9,21 +9,11 @@
 	    </classpath>
 	</taskdef>
 
-    <target name="generate-all" depends="generate-cccbr-xsd-model, generate-ringingmaster-xsd-model" description="Generate all."/>
-	
 	<target name="generate-cccbr-xsd-model" description="Generate JAX-B model for the methods library">
 		<mkdir dir="src\generated\java"/>
 		<xjc schema="resources\methods.xsd" destdir="src\generated\java" package="com.cccbr.generated.method">
 			<arg value="-nv" />
 		</xjc>
 	</target>
-	
-	<target name="generate-ringingmaster-xsd-model" description="Generate JAX-B model for the ringingmaster internal methods library">
-		<mkdir dir="src\generated\java"/>
-		<xjc schema="resources\ringingmaster.xsd" destdir="src\generated\java" package="com.concurrentperformance.ringingmaster.generated.notation.persist">
-			<arg value="-nv" />
-		</xjc>
-	</target> 
 
-	<!-- TODO run MethodExtractor task in Ant -->
 </project>

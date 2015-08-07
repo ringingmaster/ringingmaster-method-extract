@@ -5,8 +5,8 @@ import com.cccbr.generated.method.MethodSetType;
 import com.cccbr.generated.method.MethodType;
 import com.cccbr.generated.method.SymmetryType;
 import com.concurrentperformance.ringingmaster.engine.NumberOfBells;
-import com.concurrentperformance.ringingmaster.generated.notation.persist.SerializableNotation;
-import com.concurrentperformance.ringingmaster.generated.notation.persist.SerializableNotationList;
+import com.concurrentperformance.ringingmaster.generated.persist.Notation;
+import com.concurrentperformance.ringingmaster.generated.persist.NotationLibrary;
 import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,31 +20,34 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class CentralCouncilMethodExtractor implements MethodExtractor {
+/**
+ * Central Council XML library format extraction.
+ */
+public class CentralCouncilXmlLibraryNotationExtractor implements NotationExtractor {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private static final String CCBR_XML = "/allmeths.xml";
 
 	@Override
-	public Stream<SerializableNotation> extractNotationsToStream() {
-		return extractNotations().getSerializableNotation().stream();
+	public Stream<Notation> extractNotationLibraryToStream() {
+		return extractNotationLibrary().getSerializableNotation().stream();
 	}
 
 	@Override
-	public SerializableNotationList extractNotations() {
+	public NotationLibrary extractNotationLibrary() {
 
 		int unimportedMethodCount = 0;
 
-		final SerializableNotationList serializableNotationList = new SerializableNotationList();
-		final List<SerializableNotation> notations = serializableNotationList.getSerializableNotation();
+		final NotationLibrary serializableNotationList = new NotationLibrary();
+		final List<Notation> notations = serializableNotationList.getSerializableNotation();
 
 		try {
 			final JAXBContext jc = JAXBContext.newInstance("com.cccbr.generated.method");
 
 			final Unmarshaller unmarshaller = jc.createUnmarshaller();
 
-			InputStream ccbrStream = CentralCouncilMethodExtractor.class.getResourceAsStream(CCBR_XML);
+			InputStream ccbrStream = CentralCouncilXmlLibraryNotationExtractor.class.getResourceAsStream(CCBR_XML);
 			Preconditions.checkNotNull(ccbrStream);
 
 			final JAXBElement<CollectionType> unmarshallled = (JAXBElement<CollectionType>) unmarshaller.unmarshal(ccbrStream);
@@ -61,7 +64,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 				final BigInteger leadLength = methodSet.getProperties().getLengthOfLead();
 
 				for (final MethodType method : methods) {
-					final SerializableNotation notation = extractNotationFromMethodSet(method, stage, palindromic, leadLength, unimportedMethodCount);
+					final Notation notation = extractNotationFromMethodSet(method, stage, palindromic, leadLength, unimportedMethodCount);
 					if (notation != null) {
 						notations.add(notation);
 					}
@@ -80,7 +83,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 		return serializableNotationList;
 	}
 
-	private SerializableNotation extractNotationFromMethodSet(final MethodType method, final BigInteger stage, boolean palindromic, BigInteger leadLength, final int unimportedMethodCount) {
+	private Notation extractNotationFromMethodSet(final MethodType method, final BigInteger stage, boolean palindromic, BigInteger leadLength, final int unimportedMethodCount) {
 
 		final NumberOfBells numberOfBells = NumberOfBells.valueOf(stage.intValue());
 		method.getName().getValue();
@@ -121,7 +124,7 @@ public class CentralCouncilMethodExtractor implements MethodExtractor {
 			return null;
 		}
 
-		final SerializableNotation notation = new SerializableNotation();
+		final Notation notation = new Notation();
 		notation.setName(title);
 		notation.setNumberOfBells(numberOfBells.getBellCount());
 
