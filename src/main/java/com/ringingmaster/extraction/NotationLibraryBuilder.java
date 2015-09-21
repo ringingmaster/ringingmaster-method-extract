@@ -2,7 +2,7 @@ package com.ringingmaster.extraction;
 
 import com.concurrentperformance.ringingmaster.persist.DocumentPersist;
 import com.concurrentperformance.ringingmaster.persist.NotationLibraryType;
-import com.concurrentperformance.ringingmaster.persist.generated.v1.PersistableNotationLibrary;
+import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibrary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +33,7 @@ public class NotationLibraryBuilder {
 	private static void extractAndPersistNotationLibrary() {
 
 		final NotationLibraryExtractor notationLibraryExtractor = new CentralCouncilXmlLibraryNotationLibraryExtractor(CCBR_XML);
-		final PersistableNotationLibrary notations = notationLibraryExtractor.extractNotationLibrary();
+		final NotationLibrary notations = notationLibraryExtractor.extractNotationLibrary();
 
 		try {
 			Path path = Paths.get(ARTIFACT_FOLDER, NOTATION_LIBRARY_FILENAME);

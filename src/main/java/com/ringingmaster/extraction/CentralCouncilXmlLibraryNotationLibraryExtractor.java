@@ -6,8 +6,7 @@ import com.cccbr.generated.method.MethodType;
 import com.cccbr.generated.method.Notes;
 import com.cccbr.generated.method.SymmetryType;
 import com.concurrentperformance.ringingmaster.engine.NumberOfBells;
-import com.concurrentperformance.ringingmaster.persist.generated.v1.PersistableNotation;
-import com.concurrentperformance.ringingmaster.persist.generated.v1.PersistableNotationLibrary;
+import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibrary;
 import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,12 +32,12 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 	}
 
 	@Override
-	public PersistableNotationLibrary extractNotationLibrary() {
+	public NotationLibrary extractNotationLibrary() {
 
 		int unimportedMethodCount = 0;
 
-		final PersistableNotationLibrary persistableNotationLibrary = new PersistableNotationLibrary();
-		final List<PersistableNotation> persistableNotations = persistableNotationLibrary.getNotation();
+		final NotationLibrary notationLibrary = new NotationLibrary();
+		final List<PersistableNotation> persistableNotations = notationLibrary.getNotation();
 
 		try {
 			final JAXBContext jc = JAXBContext.newInstance("com.cccbr.generated.method");
@@ -57,7 +56,7 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 			String collectionName = collection.getCollectionName();
 			Notes notes = collection.getNotes();
 
-			persistableNotationLibrary.setNotes(collectionName + " " + notes.getContent().toString());
+			notationLibrary.setNotes(collectionName + " " + notes.getContent().toString());
 
 
 			for (final MethodSetType methodSet : methodSets) {
@@ -84,7 +83,7 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 			log.error("Exception extracting methods from allmethods.xml", e);
 		}
 
-		return persistableNotationLibrary;
+		return notationLibrary;
 	}
 
 	private PersistableNotation extractNotationFromMethodSet(final MethodType method, final BigInteger stage, boolean palindromic, BigInteger leadLength, final int unimportedMethodCount) {
