@@ -5,5 +5,8 @@
 // Generated on: 2015.01.12 at 07:33:03 PM GMT 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.cccbr.org.uk/methods/schemas/2007/05/methods", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.cccbr.org.uk/methods/schemas/2007/05/methods", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED,
+		xmlns = @XmlNs(prefix = "rm", namespaceURI = "http://www.cccbr.org.uk/methods/schemas/2007/05/methods"))
 package com.cccbr.generated.method;
+
+import javax.xml.bind.annotation.XmlNs;

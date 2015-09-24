@@ -6,7 +6,8 @@ import com.cccbr.generated.method.MethodType;
 import com.cccbr.generated.method.Notes;
 import com.cccbr.generated.method.SymmetryType;
 import com.concurrentperformance.ringingmaster.engine.NumberOfBells;
-import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibrary;
+import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibraryType;
+import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationType;
 import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,12 +33,12 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 	}
 
 	@Override
-	public NotationLibrary extractNotationLibrary() {
+	public NotationLibraryType extractNotationLibrary() {
 
 		int unimportedMethodCount = 0;
 
-		final NotationLibrary notationLibrary = new NotationLibrary();
-		final List<PersistableNotation> persistableNotations = notationLibrary.getNotation();
+		final NotationLibraryType notationLibrary = new NotationLibraryType();
+		final List<NotationType> persistableNotations = notationLibrary.getNotation();
 
 		try {
 			final JAXBContext jc = JAXBContext.newInstance("com.cccbr.generated.method");
@@ -67,9 +68,9 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 				final BigInteger leadLength = methodSet.getProperties().getLengthOfLead();
 
 				for (final MethodType method : methods) {
-					final PersistableNotation persistableNotation = extractNotationFromMethodSet(method, stage, palindromic, leadLength, unimportedMethodCount);
-					if (persistableNotation != null) {
-						persistableNotations.add(persistableNotation);
+					final NotationType notationType = extractNotationFromMethodSet(method, stage, palindromic, leadLength, unimportedMethodCount);
+					if (notationType != null) {
+						persistableNotations.add(notationType);
 					}
 					else {
 						unimportedMethodCount++;
@@ -86,7 +87,7 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 		return notationLibrary;
 	}
 
-	private PersistableNotation extractNotationFromMethodSet(final MethodType method, final BigInteger stage, boolean palindromic, BigInteger leadLength, final int unimportedMethodCount) {
+	private NotationType extractNotationFromMethodSet(final MethodType method, final BigInteger stage, boolean palindromic, BigInteger leadLength, final int unimportedMethodCount) {
 
 		final NumberOfBells numberOfBells = NumberOfBells.valueOf(stage.intValue());
 		method.getName().getValue();
@@ -127,7 +128,7 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 			return null;
 		}
 
-		final PersistableNotation persistableNotation = new PersistableNotation();
+		final NotationType persistableNotation = new NotationType();
 		persistableNotation.setName(title);
 		persistableNotation.setNumberOfBells(numberOfBells.getBellCount());
 

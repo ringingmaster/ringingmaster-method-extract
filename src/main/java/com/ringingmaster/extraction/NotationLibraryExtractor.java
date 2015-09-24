@@ -1,6 +1,6 @@
 package com.ringingmaster.extraction;
 
-import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibrary;
+import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibraryType;
 
 /**
  * Extract notations from a third party notation library into our standard persistent format
@@ -8,5 +8,5 @@ import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibr
  * @author Lake
  */
 public interface NotationLibraryExtractor {
-	NotationLibrary extractNotationLibrary();
+	NotationLibraryType extractNotationLibrary();
 }
