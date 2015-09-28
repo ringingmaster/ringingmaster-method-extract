@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ringingmaster-method-extraction" basedir="." default="generate-all">
+<project name="ringingmaster-method-extraction" basedir="." default="generate-cccbr-xsd-model">
 
 	<!-- XJC binding --> 
 	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
