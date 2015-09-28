@@ -6,7 +6,7 @@ import com.cccbr.generated.method.MethodType;
 import com.cccbr.generated.method.Notes;
 import com.cccbr.generated.method.SymmetryType;
 import com.concurrentperformance.ringingmaster.engine.NumberOfBells;
-import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibraryType;
+import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibraryPersist;
 import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationType;
 import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
@@ -33,11 +33,11 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 	}
 
 	@Override
-	public NotationLibraryType extractNotationLibrary() {
+	public NotationLibraryPersist extractNotationLibrary() {
 
 		int unimportedMethodCount = 0;
 
-		final NotationLibraryType notationLibrary = new NotationLibraryType();
+		final NotationLibraryPersist notationLibrary = new NotationLibraryPersist();
 		final List<NotationType> persistableNotations = notationLibrary.getNotation();
 
 		try {

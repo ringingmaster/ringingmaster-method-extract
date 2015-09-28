@@ -1,6 +1,6 @@
 package com.ringingmaster.extraction;
 
-import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibraryType;
+import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibraryPersist;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class PersistableNotationLibraryBuilderTest {
 	public void canExtractCentralCouncilLibrary() throws IOException, JAXBException {
 
 		final NotationLibraryExtractor notationLibraryExtractor = new CentralCouncilXmlLibraryNotationLibraryExtractor(NotationLibraryBuilder.CCBR_XML);
-		final NotationLibraryType notationLibrary = notationLibraryExtractor.extractNotationLibrary();
+		final NotationLibraryPersist notationLibrary = notationLibraryExtractor.extractNotationLibrary();
 
 		assertTrue(notationLibrary.getNotation().size() > 18700);
 		assertTrue(notationLibrary.getNotation().size() < 19000);
