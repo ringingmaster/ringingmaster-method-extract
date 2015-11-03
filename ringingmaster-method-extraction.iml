@@ -21,6 +21,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="ringingmaster-persist" />
+    <orderEntry type="module" module-name="ringingmaster-engine" />
     <orderEntry type="module-library">
       <library name="IvyIDEA-ringingmaster-method-extraction-lib">
         <CLASSES>
@@ -35,7 +37,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="ringingmaster-persist" />
     <orderEntry type="module-library">
       <library name="IvyIDEA-ringingmaster-method-extraction-testlib">
         <CLASSES>
@@ -46,6 +47,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="ringingmaster-engine" />
   </component>
 </module>
