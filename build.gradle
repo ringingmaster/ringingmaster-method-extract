@@ -5,13 +5,34 @@ plugins {
 dependencies {
     compile project(':ringingmaster-persist')
     compile project(':ringingmaster-engine')
+
+    compile 'org.apache.logging.log4j:log4j-core:2.4.1'
+    compile 'org.apache.logging.log4j:log4j-api:2.4.1'
+    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.4.1'
 }
 
 jaxb2 {
     xjc {
         'cc-methods-classes' {
             basePackage = 'com.cccbr.generated.method'
-            schema = 'resources/methods.xsd'
+            schema = 'src/main/resources/centralCouncil/methods.xsd'
         }
     }
 }
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/generated'
+        }
+    }
+}
+
+task(buildMethodLibrary, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.ringingmaster.extraction.NotationLibraryBuilder'
+    classpath = sourceSets.main.runtimeClasspath
+    args 'mrhaki'
+    systemProperty 'simple.message', 'Hello '
+}
+
+defaultTasks 'buildMethodLibrary'

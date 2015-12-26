@@ -23,7 +23,7 @@ public class NotationLibraryBuilder {
 	private static final String ARTIFACT_FOLDER = "./ringingmaster-engine/src/test/resource";
 	private static final String NOTATION_LIBRARY_FILENAME = "notationlibrary.xml";
 
-	protected static final String CCBR_XML = "/allmeths.xml";
+	protected static final String CCBR_XML = "/centralCouncil/allmeths.xml";
 
 
 	public static void main(final String[] args) {
@@ -38,9 +38,7 @@ public class NotationLibraryBuilder {
 		try {
 			Path path = Paths.get(ARTIFACT_FOLDER, NOTATION_LIBRARY_FILENAME);
 			new DocumentPersist().writeNotationLibrary(notations, path, NotationLibraryUsage.CC_LIBRARY);
-		} catch (IOException e) {
-			log.error("", e);
-		} catch (JAXBException e) {
+		} catch (IOException | JAXBException e) {
 			log.error("", e);
 		}
 	}

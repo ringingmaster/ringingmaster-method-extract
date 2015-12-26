@@ -25,8 +25,8 @@ public class PersistableNotationLibraryBuilderTest {
 		final NotationLibraryExtractor notationLibraryExtractor = new CentralCouncilXmlLibraryNotationLibraryExtractor(NotationLibraryBuilder.CCBR_XML);
 		final NotationLibraryPersist notationLibrary = notationLibraryExtractor.extractNotationLibrary();
 
-		assertTrue(notationLibrary.getNotation().size() > 18700);
-		assertTrue(notationLibrary.getNotation().size() < 19000);
+		assertTrue(notationLibrary.getNotation().size() > 19100);
+		assertTrue(notationLibrary.getNotation().size() < 21000);
 
 	}
 
