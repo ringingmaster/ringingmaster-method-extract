@@ -1,15 +1,17 @@
+plugins {
+    id 'com.ewerk.gradle.plugins.jaxb2' version '1.0.0'
+}
+
 dependencies {
+    compile project(':ringingmaster-persist')
+    compile project(':ringingmaster-engine')
+}
 
-// TODO remove ant file
-
-//    <!-- JaxB -->
-//    <dependency org="com.sun.xml.bind" name="jaxb-impl" rev="2.2.4-1"/>
-//    <dependency org="com.sun.xml.bind" name="jaxb-xjc" rev="2.2.4-1"/>
-
-
-//    <!-- Logging -->
-//    <dependency org="org.slf4j" name="slf4j-api" rev="1.7.12"/>
-//    <dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.4.1"/>
-//    <dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.4.1"/>
-//    <dependency org="org.apache.logging.log4j" name="log4j-slf4j-impl" rev="2.4.1"/>
+jaxb2 {
+    xjc {
+        'cc-methods-classes' {
+            basePackage = 'com.cccbr.generated.method'
+            schema = 'resources/methods.xsd'
+        }
+    }
 }
