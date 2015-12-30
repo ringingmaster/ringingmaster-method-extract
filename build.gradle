@@ -28,11 +28,12 @@ sourceSets {
     }
 }
 
-task(buildMethodLibrary, dependsOn: 'classes', type: JavaExec) {
+
+
+task (methodLibrary, dependsOn: ['classes','jaxb2Classes'], type: JavaExec) {
     main = 'com.ringingmaster.extraction.NotationLibraryBuilder'
     classpath = sourceSets.main.runtimeClasspath
-    args 'mrhaki'
-    systemProperty 'simple.message', 'Hello '
+    args '/centralCouncil/allmeths.xml', project.getBuildDir().toString() + '/notationlibrary.xml'
 }
 
-defaultTasks 'buildMethodLibrary'
+defaultTasks 'methodLibrary'

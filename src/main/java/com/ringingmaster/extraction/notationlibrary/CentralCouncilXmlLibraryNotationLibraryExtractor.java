@@ -1,4 +1,4 @@
-package com.ringingmaster.extraction;
+package com.ringingmaster.extraction.notationlibrary;
 
 import com.cccbr.generated.method.CollectionType;
 import com.cccbr.generated.method.MethodSetType;
@@ -16,8 +16,11 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.nio.file.Path;
 import java.util.List;
 
 /**
@@ -27,13 +30,15 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private final String libraryLocation;
-	public CentralCouncilXmlLibraryNotationLibraryExtractor(String libraryLocation) {
-		this.libraryLocation = libraryLocation;
+	private final Path libraryLocation;
+	public  CentralCouncilXmlLibraryNotationLibraryExtractor(Path inputLibraryLocation) {
+		this.libraryLocation = inputLibraryLocation;
 	}
 
 	@Override
 	public NotationLibraryPersist extractNotationLibrary() {
+
+		log.info("Reading Central Council library from [{}]", libraryLocation);
 
 		int unimportedMethodCount = 0;
 
@@ -45,9 +50,11 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 
 			final Unmarshaller unmarshaller = jc.createUnmarshaller();
 
-			InputStream ccbrStream = CentralCouncilXmlLibraryNotationLibraryExtractor.class.getResourceAsStream(libraryLocation);
+
+			InputStream ccbrStream = new FileInputStream(libraryLocation.toString());
 			Preconditions.checkNotNull(ccbrStream);
 
+			@SuppressWarnings("unchecked")
 			final JAXBElement<CollectionType> unmarshallled = (JAXBElement<CollectionType>) unmarshaller.unmarshal(ccbrStream);
 
 			final CollectionType collection = unmarshallled.getValue();
@@ -82,6 +89,8 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 
 		} catch (final JAXBException e) {
 			log.error("Exception extracting methods from allmethods.xml", e);
+		} catch (FileNotFoundException e) {
+			log.error("Cant find file", e);
 		}
 
 		return notationLibrary;

@@ -1,4 +1,4 @@
-package com.ringingmaster.extraction;
+package com.ringingmaster.extraction.notationlibrary;
 
 import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibraryPersist;
 
