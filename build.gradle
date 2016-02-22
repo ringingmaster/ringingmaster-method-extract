@@ -6,9 +6,9 @@ dependencies {
     compile project(':ringingmaster-persist')
     compile project(':ringingmaster-engine')
 
-    compile 'org.apache.logging.log4j:log4j-core:2.4.1'
-    compile 'org.apache.logging.log4j:log4j-api:2.4.1'
-    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.4.1'
+    runtime 'org.apache.logging.log4j:log4j-core:2.4.1'
+    runtime 'org.apache.logging.log4j:log4j-api:2.4.1'
+    runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.4.1'
 }
 
 jaxb2 {
@@ -30,7 +30,7 @@ sourceSets {
 
 
 
-task (methodLibrary, dependsOn: ['classes','jaxb2Classes'], type: JavaExec) {
+task generateMethodLibrary (group: 'ringingmaster', dependsOn: ['classes','jaxb2Classes'], type: JavaExec) {
     main = 'com.ringingmaster.extraction.NotationLibraryBuilder'
     classpath = sourceSets.main.runtimeClasspath
     args '/centralCouncil/allmeths.xml', project.getBuildDir().toString() + '/notationlibrary.xml'
