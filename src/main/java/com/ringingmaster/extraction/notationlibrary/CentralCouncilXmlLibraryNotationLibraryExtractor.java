@@ -3,7 +3,6 @@ package com.ringingmaster.extraction.notationlibrary;
 import com.cccbr.generated.method.CollectionType;
 import com.cccbr.generated.method.MethodSetType;
 import com.cccbr.generated.method.MethodType;
-import com.cccbr.generated.method.Notes;
 import com.cccbr.generated.method.SymmetryType;
 import com.concurrentperformance.ringingmaster.engine.NumberOfBells;
 import com.concurrentperformance.ringingmaster.persist.generated.v1.LibraryNotationPersist;
@@ -22,6 +21,7 @@ import java.io.InputStream;
 import java.math.BigInteger;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Central Council XML library format extraction.
@@ -59,12 +59,15 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 
 			final CollectionType collection = unmarshallled.getValue();
 
-			final List<MethodSetType> methodSets = collection.getMethodSet();
+            collection.getDecisionsYear();
+            notationLibrary.setNotes(
+                    "Collection Name [" + Objects.toString(collection.getCollectionName()) + "] " +
+                    "Notes [" + Objects.toString(collection.getNotes().getContent() ) + "] " +
+                    "Creation Date [" + Objects.toString(collection.getDate()) + "] " +
+                    "Decision Year [" + Objects.toString(collection.getDecisionsYear() + "] ")
+            );
 
-			String collectionName = collection.getCollectionName();
-			Notes notes = collection.getNotes();
-
-			notationLibrary.setNotes(collectionName + " " + notes.getContent().toString());
+            final List<MethodSetType> methodSets = collection.getMethodSet();
 
 
 			for (final MethodSetType methodSet : methodSets) {
