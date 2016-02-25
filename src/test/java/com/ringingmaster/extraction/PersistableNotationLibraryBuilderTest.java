@@ -13,8 +13,6 @@ import java.io.IOException;
 import static org.junit.Assert.assertTrue;
 
 /**
- * TODO Comments
- *
  * @author Lake
  */
 public class PersistableNotationLibraryBuilderTest {
@@ -24,7 +22,7 @@ public class PersistableNotationLibraryBuilderTest {
 	@Test
 	public void canExtractCentralCouncilLibrary() throws IOException, JAXBException {
 
-		final NotationLibraryExtractor notationLibraryExtractor = NotationLibraryFactory.buildCentralCouncilLibraryForClasspathResource("/centralCouncil/allmeths.xml");
+		final NotationLibraryExtractor notationLibraryExtractor = NotationLibraryFactory.buildCentralCouncilLibraryForClasspathResource("/allmeths.xml");
 		final NotationLibraryPersist notationLibrary = notationLibraryExtractor.extractNotationLibrary();
 
 		// NOTE: This number will probably go up each time a new version is taken from the CC site.

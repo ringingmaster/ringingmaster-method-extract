@@ -15,7 +15,7 @@ jaxb2 {
     xjc {
         'cc-methods-classes' {
             basePackage = 'com.cccbr.generated.method'
-            schema = 'src/main/resources/centralCouncil/methods.xsd'
+            schema = 'src/main/ccResources/methods.xsd'
         }
     }
 }
@@ -23,17 +23,20 @@ jaxb2 {
 sourceSets {
     main {
         java {
+            // Not sure why this works, as it is one directory back from the java code
+            // 1) if you use the proper folder, src/generated/java , the jax2b process complains
+            // 2) If you remove it, the classes are not visible.
+            // Go figure!!!
             srcDir 'src/generated'
+        }
+        resources {
+            srcDir 'src/main/ccResources'
         }
     }
 }
 
-
-
-task generateMethodLibrary (group: 'ringingmaster', dependsOn: ['classes','jaxb2Classes'], type: JavaExec) {
+task generateMethodLibrary (group: 'ringingmaster', dependsOn: ['jaxb2Classes', 'classes'], type: JavaExec) {
     main = 'com.ringingmaster.extraction.NotationLibraryBuilder'
     classpath = sourceSets.main.runtimeClasspath
-    args '/centralCouncil/allmeths.xml', project.getBuildDir().toString() + '/notationlibrary.xml'
+    args '/allmeths.xml', project.getBuildDir().toString() + '/notationlibrary.xml'
 }
-
-defaultTasks 'methodLibrary'
