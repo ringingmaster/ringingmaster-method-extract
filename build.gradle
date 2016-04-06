@@ -1,33 +1,29 @@
 plugins {
-    id 'com.ewerk.gradle.plugins.jaxb2' version '1.0.0'
+    id 'com.github.jacobono.jaxb' version '1.3.5'
 }
 
 dependencies {
-    compile project(':ringingmaster-persist')
-    compile project(':ringingmaster-engine')
-
-    runtime 'org.apache.logging.log4j:log4j-core:2.4.1'
-    runtime 'org.apache.logging.log4j:log4j-api:2.4.1'
-    runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.4.1'
+    jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
+    jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
+    jaxb 'javax.xml.bind:jaxb-api:2.2.7'
 }
 
-jaxb2 {
+
+jaxb {
+    xsdDir = "ringingmaster-method-extraction/src/main/ccResources"
     xjc {
-        'cc-methods-classes' {
-            basePackage = 'com.cccbr.generated.method'
-            schema = 'src/main/ccResources/methods.xsd'
-        }
+        taskClassname = "com.sun.tools.xjc.XJC2Task"
+        generatePackage = "com.cccbr.generated.method"
+//        header = false
+        destinationDir = 'src/generated/java'
+//        args               = []
     }
 }
 
 sourceSets {
     main {
         java {
-            // Not sure why this works, as it is one directory back from the java code
-            // 1) if you use the proper folder, src/generated/java , the jax2b process complains
-            // 2) If you remove it, the classes are not visible.
-            // Go figure!!!
-            srcDir 'src/generated'
+            srcDir 'src/generated/java'
         }
         resources {
             srcDir 'src/main/ccResources'
@@ -35,8 +31,23 @@ sourceSets {
     }
 }
 
-task generateMethodLibrary (group: 'ringingmaster', dependsOn: ['jaxb2Classes', 'classes'], type: JavaExec) {
-    main = 'com.ringingmaster.extraction.NotationLibraryBuilder'
-    classpath = sourceSets.main.runtimeClasspath
-    args '/allmeths.xml', project.getBuildDir().toString() + '/notationlibrary.xml'
-}
+//sourceSets {
+//    main {
+//        java {
+//            // Not sure why this works, as it is one directory back from the java code
+//            // 1) if you use the proper folder, src/generated/java , the jax2b process complains
+//            // 2) If you remove it, the classes are not visible.
+//            // Go figure!!!
+//            srcDir 'src/generated'
+//        }
+//        resources {
+//            srcDir 'src/main/ccResources'
+//        }
+//    }
+//}
+
+//task generateMethodLibrary (group: 'ringingmaster', dependsOn: ['jaxb2Classes', 'classes'], type: JavaExec) {
+//    main = 'com.ringingmaster.extraction.NotationLibraryBuilder'
+//    classpath = sourceSets.main.runtimeClasspath
+//    args '/allmeths.xml', project.getBuildDir().toString() + '/notationlibrary.xml'
+//}
