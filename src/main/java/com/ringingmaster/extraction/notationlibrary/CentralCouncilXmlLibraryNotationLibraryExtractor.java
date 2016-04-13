@@ -1,15 +1,15 @@
 package com.ringingmaster.extraction.notationlibrary;
 
-import com.cccbr.generated.method.CollectionType;
-import com.cccbr.generated.method.MethodSetType;
-import com.cccbr.generated.method.MethodType;
-import com.cccbr.generated.method.SymmetryType;
+
 import com.concurrentperformance.ringingmaster.engine.NumberOfBells;
 import com.concurrentperformance.ringingmaster.persist.generated.v1.LibraryNotationPersist;
 import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibraryPersist;
 import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uk.org.cccbr.methods.schemas._2007._05.methods.CollectionType;
+import uk.org.cccbr.methods.schemas._2007._05.methods.MethodSetType;
+import uk.org.cccbr.methods.schemas._2007._05.methods.SymmetryType;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
