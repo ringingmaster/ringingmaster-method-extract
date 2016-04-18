@@ -10,37 +10,33 @@ dependencies {
     jaxb 'javax.xml.bind:jaxb-api:2.2.7'
 }
 
+def generatedCCBRMethodLibraryModelSchemaDir = "${projectDir}/src/main/ccResources"
+def generatedCCBRMethodLibraryModelClassesDir = "${buildDir}/classes/generated/jaxb"
+def generatedCCBRMethodLibraryModelGeneratedDir = "${projectDir}/src/generated/java"
 
-sourceSets {
-    main {
-        java {
-            srcDir 'src/generated/java'
-        }
-        resources {
-            srcDir 'src/main/ccResources'
-        }
-    }
-}
+// Add generated code into source set.
+sourceSets.main.java.srcDir generatedCCBRMethodLibraryModelGeneratedDir
 
+// Ensure the generated files are in the compiled source, along with forcing the generation process
+compileJava.source generateCCBRMethodLibraryJaxbJavaFiles.outputs.files, sourceSets.main.java
 
+task generateCCBRMethodLibraryJaxbJavaFiles (group: 'ringingmaster') {
 
-task generateCCBRMethodLibraryJaxbJavaFiles (dependsOn: 'clean') {
-    ext.sourcesDir = "${projectDir}/src/generated/java"
-    ext.classesDir = "${buildDir}/classes/jaxb"
+    // Drive the UP-TO-DATE mechanism
+    inputs.dir generatedCCBRMethodLibraryModelSchemaDir
+    outputs.dir generatedCCBRMethodLibraryModelClassesDir
 
-    outputs.dir classesDir
-
-    doLast() {
+    doFirst() {
         project.ant {
             taskdef name: "xjc", classname: "com.sun.tools.xjc.XJCTask",
                     classpath: configurations.jaxb.asPath
-            mkdir(dir: sourcesDir)
-            mkdir(dir: classesDir)
+            mkdir(dir: generatedCCBRMethodLibraryModelGeneratedDir)
+            mkdir(dir: generatedCCBRMethodLibraryModelClassesDir)
 
-            xjc(destdir: sourcesDir) {
-                schema(dir: "${projectDir}/src/main/ccResources", includes: "**/*.xsd")
+            xjc(destdir: generatedCCBRMethodLibraryModelGeneratedDir) {
+                schema(dir: generatedCCBRMethodLibraryModelSchemaDir, includes: "**/*.xsd")
                 arg(value: "-nv")
-                produces(dir: sourcesDir, includes: "**/*.java")
+                produces(dir: generatedCCBRMethodLibraryModelGeneratedDir, includes: "**/*.java")
             }
         }
     }
