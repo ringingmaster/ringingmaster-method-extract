@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.org.cccbr.methods.schemas._2007._05.methods.CollectionType;
 import uk.org.cccbr.methods.schemas._2007._05.methods.MethodSetType;
+import uk.org.cccbr.methods.schemas._2007._05.methods.MethodType;
 import uk.org.cccbr.methods.schemas._2007._05.methods.SymmetryType;
 
 import javax.xml.bind.JAXBContext;
