@@ -4,6 +4,7 @@ configurations {
 
 dependencies {
     compile project(':ringingmaster-persist')
+    compile project(':ringingmaster-engine')
 
     jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
     jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
@@ -16,9 +17,7 @@ def generatedCCBRMethodLibraryModelGeneratedDir = "${projectDir}/src/generated/j
 
 // Add generated code into source set.
 sourceSets.main.java.srcDir generatedCCBRMethodLibraryModelGeneratedDir
-
-// Ensure the generated files are in the compiled source, along with forcing the generation process
-compileJava.source generateCCBRMethodLibraryJaxbJavaFiles.outputs.files, sourceSets.main.java
+sourceSets.main.resources.srcDir generatedCCBRMethodLibraryModelSchemaDir
 
 task generateCCBRMethodLibraryJaxbJavaFiles (group: 'ringingmaster') {
 
@@ -42,6 +41,12 @@ task generateCCBRMethodLibraryJaxbJavaFiles (group: 'ringingmaster') {
     }
 }
 
+// Ensure the generated files are in the compiled source, along with forcing the generation process
+compileJava.source generateCCBRMethodLibraryJaxbJavaFiles.outputs.files, sourceSets.main.java
+
+clean{
+    delete generatedCCBRMethodLibraryModelGeneratedDir
+}
 
 task generateMethodLibrary (group: 'ringingmaster', dependsOn: ['generateCCBRMethodLibraryJaxbJavaFiles', 'classes'], type: JavaExec) {
     main = 'com.ringingmaster.extraction.NotationLibraryBuilder'

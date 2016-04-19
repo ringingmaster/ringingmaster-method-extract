@@ -47,7 +47,7 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 		final List<LibraryNotationPersist> persistableNotations = notationLibrary.getNotation();
 
 		try {
-			final JAXBContext jc = JAXBContext.newInstance("com.cccbr.generated.method");
+			final JAXBContext jc = JAXBContext.newInstance("uk.org.cccbr.methods.schemas._2007._05.methods");
 
 			final Unmarshaller unmarshaller = jc.createUnmarshaller();
 
