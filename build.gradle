@@ -76,7 +76,7 @@ def artifactsDir = "${buildDir}/artifacts"
 task generateMethodLibrary (group: 'ringingmaster', dependsOn: ['generateCCBRMethodLibraryJaxbJavaFiles', 'classes'], type: JavaExec) {
     project.ant.mkdir(dir: artifactsDir)
     
-    main = 'com.ringingmaster.extraction.NotationLibraryBuilder'
+    main = 'com.ringingmaster.extract.NotationLibraryBuilder'
     classpath(sourceSets.main.runtimeClasspath)
     classpath(sourceSets.test.runtimeClasspath) //To get the logging libs
     args '/allmeths.xml', "${artifactsDir}/notationlibrary.xml"

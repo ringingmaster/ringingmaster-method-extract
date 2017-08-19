@@ -1,4 +1,4 @@
-package com.ringingmaster.extraction.notationlibrary;
+package com.ringingmaster.extract.notationlibrary;
 
 
 import com.concurrentperformance.ringingmaster.engine.NumberOfBells;
@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Central Council XML library format extraction.
+ * Central Council XML library format extract.
  */
 public class CentralCouncilXmlLibraryNotationLibraryExtractor implements NotationLibraryExtractor {
 
