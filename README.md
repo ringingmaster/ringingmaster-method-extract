@@ -4,4 +4,4 @@
 Utility to convert Central Council method library to RingingMaster format.
 
 
-##Use Gradle 4 or greater
+## Use Gradle 4 or greater
