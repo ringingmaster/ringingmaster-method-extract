@@ -1,0 +1,12 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+# This section ensure Travis uses the latest available JDK
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
+script: gradle check

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ringingmaster/ringingmaster-method-extract.svg?branch=master)](https://travis-ci.org/ringingmaster/ringingmaster-method-extract)
+
 # ringingmaster-method-extract
 
 
