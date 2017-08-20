@@ -1,6 +1,6 @@
 apply plugin: 'java'
 
-group 'com.concurrentperformance.ringingmaster'
+group 'org.ringingmaster'
 version '1.0.0'
 
 compileJava {
@@ -18,8 +18,8 @@ configurations {
 }
 
 dependencies {
-    compile 'com.concurrentperformance.ringingmaster:ringingmaster-persist:1.0.0'
-    compile 'com.concurrentperformance.ringingmaster:ringingmaster-engine:1.0.0'
+    compile 'org.ringingmaster:ringingmaster-persist:1.0.0'
+    compile 'org.ringingmaster:ringingmaster-engine:1.0.0'
 
     jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
     jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'

@@ -1,10 +1,10 @@
-package com.ringingmaster.extract.notationlibrary;
+package org.ringingmaster.extract.notationlibrary;
 
 
-import com.concurrentperformance.ringingmaster.engine.NumberOfBells;
-import com.concurrentperformance.ringingmaster.persist.generated.v1.LibraryNotationPersist;
-import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibraryPersist;
 import com.google.common.base.Preconditions;
+import org.ringingmaster.engine.NumberOfBells;
+import org.ringingmaster.persist.generated.v1.LibraryNotationPersist;
+import org.ringingmaster.persist.generated.v1.NotationLibraryPersist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.org.cccbr.methods.schemas._2007._05.methods.CollectionType;

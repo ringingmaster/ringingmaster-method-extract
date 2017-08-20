@@ -8,7 +8,7 @@
 
 	<Loggers>
 
-		<logger name="com.concurrentperformance.ringingmaster" level="info"/>
+		<logger name="org.ringingmaster" level="info"/>
 
 		<Root level="info">
 			<AppenderRef ref="CONSOLE"/>

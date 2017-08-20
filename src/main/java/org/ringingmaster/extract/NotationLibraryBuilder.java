@@ -1,10 +1,10 @@
-package com.ringingmaster.extract;
+package org.ringingmaster.extract;
 
-import com.concurrentperformance.ringingmaster.persist.DocumentPersist;
-import com.concurrentperformance.ringingmaster.persist.NotationLibraryUsage;
-import com.concurrentperformance.ringingmaster.persist.generated.v1.NotationLibraryPersist;
-import com.ringingmaster.extract.notationlibrary.NotationLibraryExtractor;
-import com.ringingmaster.extract.notationlibrary.NotationLibraryFactory;
+import org.ringingmaster.persist.DocumentPersist;
+import org.ringingmaster.persist.NotationLibraryUsage;
+import org.ringingmaster.persist.generated.v1.NotationLibraryPersist;
+import org.ringingmaster.extract.notationlibrary.NotationLibraryExtractor;
+import org.ringingmaster.extract.notationlibrary.NotationLibraryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

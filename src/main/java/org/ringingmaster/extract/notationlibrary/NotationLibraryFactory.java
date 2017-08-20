@@ -1,4 +1,4 @@
-package com.ringingmaster.extract.notationlibrary;
+package org.ringingmaster.extract.notationlibrary;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
