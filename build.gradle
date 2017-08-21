@@ -18,19 +18,19 @@ configurations {
 }
 
 dependencies {
+    // Internal
     compile 'org.ringingmaster:ringingmaster-persist:1.0.0'
     compile 'org.ringingmaster:ringingmaster-engine:1.0.0'
 
-    jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
-    jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
-    jaxb 'javax.xml.bind:jaxb-api:2.2.7'
+    jaxb 'org.glassfish.jaxb:jaxb-xjc:2.2.11'
+    jaxb 'org.glassfish.jaxb:jaxb-runtime:2.2.11'
 
 //    // TEST: General
     testCompile 'junit:junit:4.12'
 //
 //    // TEST: Logging
-    testRuntime 'org.apache.logging.log4j:log4j-core:2.5'
-    testRuntime 'org.apache.logging.log4j:log4j-slf4j-impl:2.5'
+    testRuntime 'org.apache.logging.log4j:log4j-core:2.8.2'
+    testRuntime 'org.apache.logging.log4j:log4j-slf4j-impl:2.8.2'
 }
 
 def generatedCCBRMethodLibraryModelSchemaDir = "${projectDir}/src/main/ccResources"
