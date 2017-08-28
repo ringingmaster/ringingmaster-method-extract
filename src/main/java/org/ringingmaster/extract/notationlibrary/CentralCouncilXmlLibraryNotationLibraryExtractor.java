@@ -143,7 +143,7 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 
 		final LibraryNotationPersist persistableNotation = new LibraryNotationPersist();
 		persistableNotation.setName(title);
-		persistableNotation.setNumberOfWorkingBells(numberOfBells.getBellCount());
+		persistableNotation.setNumberOfWorkingBells(numberOfBells.toInt());
 
 		// are we palindromic AND folded?
 		final String[] split = notationShorthand.split(",");
