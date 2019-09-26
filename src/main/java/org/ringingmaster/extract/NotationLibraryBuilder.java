@@ -1,6 +1,6 @@
 package org.ringingmaster.extract;
 
-import org.ringingmaster.persist.DocumentPersist;
+import org.ringingmaster.persist.NotationLibraryPersister;
 import org.ringingmaster.persist.NotationLibraryUsage;
 import org.ringingmaster.persist.generated.v1.NotationLibraryPersist;
 import org.ringingmaster.extract.notationlibrary.NotationLibraryExtractor;
@@ -43,7 +43,7 @@ public class NotationLibraryBuilder {
 		try {
 			Path path = Paths.get(outputCentralCouncilXmlPathAbsolutePath).toAbsolutePath().normalize();
 			log.info("Writing notation library to [{}]", path);
-			new DocumentPersist().writeNotationLibrary(notations, path, NotationLibraryUsage.CC_LIBRARY);
+			new NotationLibraryPersister().writeNotationLibrary(notations, path, NotationLibraryUsage.CC_LIBRARY);
 		} catch (IOException | JAXBException e) {
 			log.error("", e);
 		}

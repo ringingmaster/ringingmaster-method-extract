@@ -26,8 +26,8 @@ public class PersistableNotationLibraryBuilderTest {
 		final NotationLibraryPersist notationLibrary = notationLibraryExtractor.extractNotationLibrary();
 
 		// NOTE: This number will probably go up each time a new version is taken from the CC site.
-		assertTrue(notationLibrary.getNotation().size() > 19100);
-		assertTrue(notationLibrary.getNotation().size() < 21000);
+		assertTrue(notationLibrary.getNotation().size() > 20900);
+		assertTrue(notationLibrary.getNotation().size() < 22000);
 
 	}
 

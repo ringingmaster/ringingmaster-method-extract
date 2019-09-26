@@ -4,7 +4,7 @@
 	
 	XML Schema for method definitions and method collections
 	Version 1.0 specification
-	http://www.cccbr.org.uk/methods/schemas/2007/05/methods
+	http://www.methods.org.uk/schemas/2007/05/methods
 	
 	Copyright (c) 2005, 2007
 	
@@ -24,20 +24,20 @@
 	It also defines two substitution groups:
 	
 	7. A substitution group for references, with an abstract head and some concrete instantiations.
-	8. A substitution group for touch references, with an abstract head and some concrete instantiations.
+	8. A substitution group for performance references, with an abstract head and some concrete instantiations.
 	
 	The methodSetType and methodType definitions are fairly open-ended - most of their contents are optional. This is to allow them to be used in a variety of different contexts.
 	
 	Users can adapt these definitions as follows:
 	
 	- Omit optional contents
-	- Add references or touch references from their own namespaces to the method element, using the substitution groups.
+	- Add references or performance references from their own namespaces to the method element, using the substitution groups.
 	- Add additional elements from their own namespaces as children of the notes and meta elements.
 	- Add attributes from their own namespaces to the collection, methodSet or method elements.
 -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:mx="http://www.cccbr.org.uk/methods/schemas/2007/05/methods"
-	targetNamespace="http://www.cccbr.org.uk/methods/schemas/2007/05/methods" elementFormDefault="qualified">
+	xmlns:mx="http://www.methods.org.uk/schemas/2007/05/methods"
+	targetNamespace="http://www.methods.org.uk/schemas/2007/05/methods" elementFormDefault="qualified">
 	<annotation>
 		<documentation>
 		Central Council of Church Bell Ringers, Methods Committee.
@@ -51,7 +51,7 @@
 		</documentation>
 	</annotation>
 
-	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd" />
+	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd" />
 
 	<!--  The Global Element Definitions    -->
 
@@ -86,7 +86,7 @@
 
 	</complexType>
 
-<!--  The type used by the methodSet Global Element Definition   -->
+	<!--  The type used by the methodSet Global Element Definition   -->
 	<complexType name="methodSetType">
 		<annotation>
 			<documentation>
@@ -309,7 +309,7 @@
 			<element name="performances" minOccurs="0">
 				<complexType>
 					<sequence>
-						<element ref="mx:touch" minOccurs="1" maxOccurs="unbounded" />
+						<element ref="mx:performance" minOccurs="1" maxOccurs="unbounded" />
 					</sequence>
 				</complexType>
 			</element>
@@ -419,50 +419,50 @@
 		</complexType>
 	</element>
 
-	<!--                 Touch References defined by this schema             -->
+	<!--                 Performance References defined by this schema             -->
 
-	<element name="touch" type="mx:touchType" abstract="true">
+	<element name="performance" type="mx:performanceType" abstract="true">
 		<annotation>
 			<documentation>
-				This is the abstract definition of a touch reference. This schema defines a number of concrete
+				This is the abstract definition of a performance reference. This schema defines a number of concrete
 				references. Users can define their own references in their own namespaces and adding them to the mx:
-				touch substitution group
+				performance substitution group
 			</documentation>
 		</annotation>
 	</element>
 
-	<element name="firstTowerbellPeal" type="mx:touchType" substitutionGroup="mx:touch">
+	<element name="firstTowerbellPeal" type="mx:performanceType" substitutionGroup="mx:performance">
 		<annotation>
 			<documentation>Details of the first single-method tower bell peal of this method</documentation>
 		</annotation>
 	</element>
 
-	<element name="firstHandbellPeal" type="mx:touchType" substitutionGroup="mx:touch">
+	<element name="firstHandbellPeal" type="mx:performanceType" substitutionGroup="mx:performance">
 		<annotation>
 			<documentation>Details of the first single-method handbell peal of this method</documentation>
 		</annotation>
 	</element>
 	
-	<element name="firstInclusionInTowerbellPeal" type="mx:touchType" substitutionGroup="mx:touch">
+	<element name="firstInclusionInTowerbellPeal" type="mx:performanceType" substitutionGroup="mx:performance">
 		<annotation>
 			<documentation>Details of the first tower bell peal that includes this method</documentation>
 		</annotation>
 	</element>
 
-	<element name="firstInclusionInHandbellPeal" type="mx:touchType" substitutionGroup="mx:touch">
+	<element name="firstInclusionInHandbellPeal" type="mx:performanceType" substitutionGroup="mx:performance">
 		<annotation>
 			<documentation>Details of the first handbell peal that includes this method</documentation>
 		</annotation>
 	</element>
 	
 
-	<element name="firstTowerbellExtent" type="mx:touchType" substitutionGroup="mx:touch">
+	<element name="firstTowerbellExtent" type="mx:performanceType" substitutionGroup="mx:performance">
 		<annotation>
 			<documentation>Details of the first extent of this method rung on tower bells</documentation>
 		</annotation>
 	</element>
 	
-	<element name="firstHandbellExtent" type="mx:touchType" substitutionGroup="mx:touch">
+	<element name="firstHandbellExtent" type="mx:performanceType" substitutionGroup="mx:performance">
 		<annotation>
 			<documentation>Details of the first extent of this method rung on handbells</documentation>
 		</annotation>
@@ -487,7 +487,7 @@
 		</simpleContent>
 	</complexType>
 
-	<complexType name="touchType">
+	<complexType name="performanceType">
 		<all>
 			<element name="date" type="date" minOccurs="0" />
 			<element name="location" type="mx:locationType" minOccurs="0" />

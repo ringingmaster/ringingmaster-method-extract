@@ -7,10 +7,10 @@ import org.ringingmaster.persist.generated.v1.LibraryNotationPersist;
 import org.ringingmaster.persist.generated.v1.NotationLibraryPersist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import uk.org.cccbr.methods.schemas._2007._05.methods.CollectionType;
-import uk.org.cccbr.methods.schemas._2007._05.methods.MethodSetType;
-import uk.org.cccbr.methods.schemas._2007._05.methods.MethodType;
-import uk.org.cccbr.methods.schemas._2007._05.methods.SymmetryType;
+import uk.org.methods.schemas._2007._05.methods.CollectionType;
+import uk.org.methods.schemas._2007._05.methods.MethodSetType;
+import uk.org.methods.schemas._2007._05.methods.MethodType;
+import uk.org.methods.schemas._2007._05.methods.SymmetryType;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -47,7 +47,7 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 		final List<LibraryNotationPersist> persistableNotations = notationLibrary.getNotation();
 
 		try {
-			final JAXBContext jc = JAXBContext.newInstance("uk.org.cccbr.methods.schemas._2007._05.methods");
+			final JAXBContext jc = JAXBContext.newInstance("uk.org.methods.schemas._2007._05.methods");
 
 			final Unmarshaller unmarshaller = jc.createUnmarshaller();
 
@@ -92,7 +92,7 @@ public class CentralCouncilXmlLibraryNotationLibraryExtractor implements Notatio
 			log.info("Extracted [" + persistableNotations.size() + "]. Methods not imported [" + unimportedMethodCount + "]");
 
 		} catch (final JAXBException e) {
-			log.error("Exception extracting methods from allmethods.xml", e);
+			log.error("Exception extracting methods from [{}]", libraryLocation, e);
 		} catch (FileNotFoundException e) {
 			log.error("Cant find file", e);
 		}
